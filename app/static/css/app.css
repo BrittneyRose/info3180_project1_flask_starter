@@ -1,3 +1,105 @@
 body {
-    padding-top: 5rem;
+    padding-top: 5rem; 
+    background-color: rgb(218, 218, 218);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1{
+    padding-bottom: 10px;
+    margin-left: 60px;
+}
+
+h2{
+    font-size: 20px;
+}
+
+.formContainer{
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+    background-color: white;
+    padding: 40px;
+    border-radius: 5px;
+    max-width: fit-content;
+    margin-left: 50px;
+}
+
+.form{
+    max-width: fit-content;
+    padding: 15px;
+
+}
+
+.form input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+
+.feilds{
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+
+.titleFeild{
+    height: 40px;
+    width: 520px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.desFeild{
+    height: 100px;
+    width: 520px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.typeFeild{
+    height: 20px;
+    width: 200px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: white;
+}
+
+
+.button{
+    background-color: rgb(69, 98, 186);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 150px;
+    height: 40px;
+    margin-top: 20px;
+}
+
+.flashes{
+    text-align: center;
+    background-color: rgb(95, 213, 239);
+    color: white;
+    list-style: none;
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.numOfRooms, .propertyPriceFeilds{
+    display: flex;
+    text-align: left;
+    flex-direction: row;
+
+}
+
+.roomFieldContainer, .propertyPriceFeildsContainer {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px; 
+
 }

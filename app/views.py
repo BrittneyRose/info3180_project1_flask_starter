@@ -4,10 +4,16 @@ Jinja2 Documentation:    https://jinja.palletsprojects.com/
 Werkzeug Documentation:  https://werkzeug.palletsprojects.com/
 This file contains the routes for your application.
 """
-
+import os
 from app import app
-from flask import render_template, request, redirect, url_for
-
+from flask import render_template, request, redirect, url_for, flash
+from app.forms import AddPropertyForm
+from werkzeug.utils import secure_filename
+from app.models import PropertyProfile
+from flask import send_from_directory
+from . import db
+from app.config import Config
+UPLOAD_FOLDER = Config.UPLOAD_FOLDER
 
 ###
 # Routing for your application.
@@ -23,6 +29,53 @@ def home():
 def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
+
+@app.route('/create/', methods=['GET','POST'])
+def create():
+    form = AddPropertyForm()
+
+    if form.validate_on_submit() and request.method == 'POST':
+        title = form.title.data
+        description = form.description.data
+        room_num = form.room_num.data
+        bathroom_num = form.bathroom_num.data
+        price = form.price.data
+        property_type = form.property_type.data
+        location = form.location.data
+        
+        file = form.file.data
+        filename = secure_filename(file.filename)
+        destination_folder = os.path.join(app.root_path, app.config['UPLOAD_FOLDER'])
+        os.makedirs(destination_folder, exist_ok=True)
+        file.save(os.path.join(app.root_path, UPLOAD_FOLDER, filename))
+
+        property_profile = PropertyProfile(
+            title=title,
+            description=description,
+            room_num=room_num,
+            bathroom_num=bathroom_num,
+            price=price,
+            property_type=property_type,
+            location=location,
+            photo_filename=filename  
+        )
+        db.session.add(property_profile)
+        db.session.commit()
+
+        flash('Property was successfully added')
+        return redirect(url_for('properties'))
+    else:
+        flash_errors(form)
+
+    return render_template('create.html', form=form)
+
+
+@app.route('/properties/', methods=['POST', 'GET'])
+def properties():
+    
+    return render_template('view_properties.html')
+
+
 
 
 ###
