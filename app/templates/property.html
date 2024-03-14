@@ -1,23 +1,44 @@
 {% extends "base.html" %}
 
 {% block main %}
-
-    <h1 class="property_h1" class="display-5 fw-bold">Property</h1>
-
     <div class="detailContainer">
-        <div class="property-cards">
        
-            <div class="property-card">
+            <div class="property-detail-card">
 
-                <img class="viewImage" src="{{url_for('get_image', filename = property.photo_filename)}}" alt="{{property.photo_filename}}">
+                <img class="detailImage" src="{{url_for('get_image', filename = property.photo_filename)}}" alt="{{property.photo_filename}}">
         
-                <h2 class="view_h2">{{ property.title }}</h2>
-                <p class="viewLocation"> {{ property.location }}</p>
-                <p class="price-oval"> ${{property.price }}</p>
-                <button class="viewPropertyButton"><a href="#">View Property</a></button>
+                <div class="details">
+                    <h2 class="detail_h2">{{ property.title }}</h2>
+                
+                <div class="ovalConatiner">
+                    <p class="detail-price-oval"> ${{property.price }}</p>
+                    <p class="detail-type-oval"> {{property.property_type}}</p>
+                </div>
+
+                <p class="detail_description"> {{property.description }}</p>
+
+                <div class="roomContainer">
+                    <div class="room_num_Container">
+                        <i class="fas fa-bed"></i>
+                        <p class="detailRoom">{{ property.room_num}} Bedrooms</p>
+                    </div>
+    
+                    <div class="bathroom_num_Container">
+                        <i class="fas fa-shower"></i>
+                        <p class="detailBathroom">{{ property.bathroom_num}} Bathrooms</p>
+                    </div>
+                </div>
+
+                <div class="detailLocationContainer">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p class="detailLocation">{{ property.location }}</p>
+                </div>
+
+                <button class="emailButton"><a href="#" >Email Realtor</a></button>
+
+                </div>
             </div>
-         
-        </div>
+
     </div>
 
 
