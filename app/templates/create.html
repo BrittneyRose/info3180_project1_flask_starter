@@ -1,45 +1,45 @@
 {% extends "base.html" %}
 
 {% block main %}
-<h1>Add New Property</h1>
+<h1 class="add_h1">Add New Property</h1>
 
 
 <form method="POST" action="/create/" enctype="multipart/form-data">
     <div class="formContainer">
         {{form.csrf_token}}
     
-    <h2>{{form.title.label}}</h2>
+    <h2 class="add_h2">{{form.title.label}}</h2>
     <p> {{form.title(class="titleFeild")}}</p>
 
-    <h2>{{form.description.label}}</h2>
+    <h2 class="add_h2">{{form.description.label}}</h2>
     <p> {{form.description(class="desFeild")}}</p>
 
     <div class="numOfRooms">
         <div class="roomFieldContainer">
-            <h2>{{form.room_num.label}}</h2>
+            <h2 class="add_h2">{{form.room_num.label}}</h2>
             <p> {{form.room_num(class="feilds")}}</p>
         </div>
 
         <div class="roomFieldContainer">
-            <h2>{{form.bathroom_num.label}}</h2>
+            <h2 class="add_h2">{{form.bathroom_num.label}}</h2>
             <p> {{form.bathroom_num(class="feilds")}}</p>
         </div>
     </div>
 
     <div class="propertyPriceFeilds">
         <div class="propertyPriceFeildsContainer">
-            <h2>{{form.price.label}}</h2>
-        <p> {{form.price(class="feilds")}}</p>
+            <h2 class="add_h2">{{form.price.label}}</h2>
+            <p> {{form.price(class="feilds")}}</p>
         </div>
 
         <div class="propertyPriceFeildsContainer">
-            <h2>{{form.property_type.label}}</h2>
+            <h2 class="add_h2">{{form.property_type.label}}</h2>
             <p> {{form.property_type(class="typeFeild")}}</p>
         </div>
 
     </div>
 
-    <h2>{{form.location.label}}</h2>
+    <h2 class="add_h2">{{form.location.label}}</h2>
     <p> {{form.location(class="feilds")}}</p>
 
 

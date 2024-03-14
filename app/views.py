@@ -62,7 +62,7 @@ def create():
         db.session.add(property_profile)
         db.session.commit()
 
-        flash('Property was successfully added')
+        flash('Property was successfully added', 'success')
         return redirect(url_for('properties'))
     else:
         flash_errors(form)
@@ -72,9 +72,27 @@ def create():
 
 @app.route('/properties/', methods=['POST', 'GET'])
 def properties():
-    
-    return render_template('view_properties.html')
+    properties = PropertyProfile.query.all()
+    return render_template('view_properties.html', properties=properties)
 
+@app.route('/properties/<int:property_id>')
+def property(property_id):
+    property = PropertyProfile.query.get_or_404(property_id)
+    return render_template('property.html', property=property)
+
+
+def get_uploaded_images():
+    rootdir = os.path.join(os.getcwd(), 'uploads')
+    image_files =[]
+
+    for subdir, dirs, files in os.walk(rootdir):
+        for file in files:
+            image_files.append(file)
+    return image_files
+
+@app.route('/uploads/<filename>')
+def get_image(filename):
+    return send_from_directory(os.path.join(os.getcwd(), app.config['UPLOAD_FOLDER']), filename)
 
 
 
@@ -114,3 +132,5 @@ def add_header(response):
 def page_not_found(error):
     """Custom 404 page."""
     return render_template('404.html'), 404
+
+

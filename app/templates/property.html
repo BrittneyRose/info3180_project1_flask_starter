@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+    <h1 class="property_h1" class="display-5 fw-bold">Property</h1>
+
+    <div class="detailContainer">
+        <div class="property-cards">
+       
+            <div class="property-card">
+
+                <img class="viewImage" src="{{url_for('get_image', filename = property.photo_filename)}}" alt="{{property.photo_filename}}">
+        
+                <h2 class="view_h2">{{ property.title }}</h2>
+                <p class="viewLocation"> {{ property.location }}</p>
+                <p class="price-oval"> ${{property.price }}</p>
+                <button class="viewPropertyButton"><a href="#">View Property</a></button>
+            </div>
+         
+        </div>
+    </div>
+
+
+{% endblock %}

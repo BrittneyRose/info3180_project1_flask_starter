@@ -13,6 +13,6 @@ class PropertyProfile(db.Model):
     price = db.Column(db.String(80))
     property_type = db.Column(db.String(80))
     location = db.Column(db.String(80))
-    photo_filename = db.Column(db.String(80))
+    photo_filename = db.Column(db.String(128))
 
   

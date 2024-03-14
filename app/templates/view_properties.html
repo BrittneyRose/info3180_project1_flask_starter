@@ -1,9 +1,30 @@
 {% extends "base.html" %}
 
 {% block main %}
-<h1 class="display-5 fw-bold">Properties</h1>
 
-{% include 'flash_messages.html' %}
+    <h1 class="view_h1" class="display-5 fw-bold">Properties</h1>
 
-<p>View properties here</p>
+    {% include 'flash_messages.html' %}
+
+    <div class="detailContainer">
+        <div class="property-cards">
+            {% for property in properties %}
+            <div class="property-card">
+
+                <img class="viewImage" src="{{url_for('get_image', filename = property.photo_filename)}}" alt="{{property.photo_filename}}">
+    
+        
+                <h2 class="view_h2">{{ property.title }}</h2>
+                <div class="locationContainer">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p class="viewLocation">{{ property.location }}</p>
+                </div>
+                <p class="price-oval"> ${{property.price }}</p>
+                <button class="viewPropertyButton"><a href="{{ url_for('property', property_id=property.id) }}" >View Property</a></button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
 {% endblock %}
